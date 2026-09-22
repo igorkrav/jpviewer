@@ -1,0 +1,21 @@
+Used GLEW, glfw, TurboJPEG as static libraries.
+- Update 'Additional Include Directories' in Configuration properties -> C++ -> General
+- Update 'Additional Library Directories' in Configuration properties -> Linker -> General
+- Check 'Additional Dependensies' in Configuration properties -> Linker -> Input
+
+JXL-LIB used as dynamic library.
+
+Install vcpkg manager for jxl support
+------
+PowerShell
+
+git clone https://github.com/microsoft/vcpkg
+cd .\vcpkg\
+.\bootstrap-vcpkg.bat
+.\vcpkg integrate install
+.\vcpkg install libjxl:x64-windows
+
+Enable vcpkg in Visual Studio
+- Project properties
+- Configuration properties->vcpkg
+- Set 'Use Vcpkg' to Yes
