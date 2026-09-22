@@ -5,17 +5,10 @@
  * See the LICENSE file in the project root for full license information.
  */
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory>
-#include <filesystem>
-#include <iostream>
 
-#include "shader.h"
-#include "jpegImage.h"
 #include "Screen.h"
 
 #include "toml.hpp"
@@ -23,6 +16,7 @@
 #include "strconv.h"
 
 int read_config();
+void help(const char *name);
 
 // default window size
 constexpr int WWIDTH = 1100;
@@ -38,11 +32,9 @@ int main(int argc, char* argv[])
 {
     read_config();
 
+    help(argv[0]);
     if (argc < 2) {
-        std::cout<<"Usage:\n"
-            << argv[0]
-            << " <[image.jpg|image.jxl]>\n"
-            << std::endl;
+
         return -1;
     }
 
@@ -74,4 +66,33 @@ int read_config()
         return 1;
     }
     return 0;
+}
+
+void help(const char *name)
+{
+    std::cout << "OGL viewer v0.55\n"
+        << std::endl;
+    std::cout << "Usage:\n"
+        << name
+        << " <[image.jpg|image.jxl]>\n"
+        << std::endl;
+
+    std::cout << "Viewer controls:" << std::endl;
+    std::cout << "Keyboard" << std::endl;
+    std::cout << "Up, Down, Left, Right - scroll image"<< std::endl;
+    std::cout << "Shift-Up, Shift-Down, Left, Right - scroll image smoothly"<< std::endl;
+    std::cout << "Ctrl-Up    - scroll to image top"<< std::endl;
+    std::cout << "Ctrl-Down  - scroll to image bottom"<< std::endl;
+    std::cout << "Spacebar   - show next image"<< std::endl;
+    std::cout << "Backspace  - show prev image"<< std::endl;
+    std::cout << "W          - fit image to window width"<< std::endl;
+    std::cout << "H          - fit image to window height"<< std::endl;
+    std::cout << "0          - reload image with default setting"<< std::endl;
+    std::cout << "=/+        - zoom in" << std::endl;
+    std::cout << "-          - zoom out" << std::endl;
+    std::cout << "Esc        - exit" << std::endl << std::endl;
+    std::cout << "Mouse" << std::endl;
+    std::cout << "Right      - show next image" << std::endl;
+    std::cout << "Left       - show prev image" << std::endl;
+    std::cout << "Scroll     - zoom" << std::endl;
 }
