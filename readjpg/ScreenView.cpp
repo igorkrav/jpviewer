@@ -98,6 +98,8 @@ void ScreenView::setupImage(ScreenModel& model)
 
 void ScreenView::updateVertices(const ScreenModel& model)
 {
+    glViewport(0, 0, width, height);
+
     const jpegImage* jpeg = model.getCurrentImage();
     if (!jpeg) return;
 

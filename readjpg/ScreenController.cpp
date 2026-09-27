@@ -218,6 +218,7 @@ void ScreenController::handleFramebufferSize(int w, int h)
 {
     const auto* jpeg = model.getCurrentImage();
     if (jpeg) {
+        view.setWSize(w, h);
         model.updateViewport(w, h, jpeg->get_width(), jpeg->get_height());
     }
 }

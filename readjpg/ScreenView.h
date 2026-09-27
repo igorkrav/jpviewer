@@ -31,7 +31,10 @@ public:
     // Window queries
     int getWidth() const { return width; }
     int getHeight() const { return height; }
-    
+    void setWSize(int w, int h) { width = w; height = h; }
+    void setWidth (int v) { width = v; }
+    void setHeight(int v) { height = v; }
+
     // Title management
     void setWindowTitle(const std::wstring& title);
 
