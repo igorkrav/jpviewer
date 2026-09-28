@@ -59,7 +59,7 @@ bool file_list::load_from_directory(const wchar_t* directory)
             std::filesystem::path _dir = L".";
             std::filesystem::path _name = directory;
             _name = _dir / _name;
-            name = _name.c_str();
+            name = _name.wstring();
             if (dirPath.empty()) {
                 dirPath = L".";
             }
