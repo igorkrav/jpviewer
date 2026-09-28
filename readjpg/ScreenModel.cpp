@@ -245,7 +245,7 @@ void ScreenModel::updateImage(int step)
     posx = posy = 0;
     scale = 1.0f;
 
-    if (jpeg && jpeg->is_loaded()) {
+    if (jpeg && (jpeg->is_loaded() || jpeg->is_texture())) {
         updateViewport(windowWidth, windowHeight, jpeg->get_width(), jpeg->get_height());
     }
 

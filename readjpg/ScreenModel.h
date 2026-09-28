@@ -29,6 +29,8 @@ public:
     float getScale0() const { return scale0; }
     float getAspectRatio() const { return imageAspect; }
     float getWindowAspectRatio() const { return windowAspect; }
+
+    void setScale(float v) { scale = v; }
     
     jpegImage* getCurrentImage() const { return jpeg.get(); }
     int getImageCount() const;

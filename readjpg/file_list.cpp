@@ -56,7 +56,10 @@ bool file_list::load_from_directory(const wchar_t* directory)
 
             std::filesystem::path filePath = directory;
             dirPath = filePath.parent_path();
-            name = directory;
+            std::filesystem::path _dir = L".";
+            std::filesystem::path _name = directory;
+            _name = _dir / _name;
+            name = _name.c_str();
             if (dirPath.empty()) {
                 dirPath = L".";
             }
@@ -72,6 +75,8 @@ bool file_list::load_from_directory(const wchar_t* directory)
         if (entry.is_regular_file()) {
             std::wstring ext = entry.path().extension().wstring();
             if (
+                caseInsensitiveCompare(ext, L".dcm") ||
+                caseInsensitiveCompare(ext, L".img") ||
                 caseInsensitiveCompare(ext, L".jxl") ||
                 caseInsensitiveCompare(ext, L".jpg") ||
                 caseInsensitiveCompare(ext, L".jpeg")

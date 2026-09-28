@@ -180,11 +180,13 @@ void ScreenController::fit2width()
     if (jpeg) {
         float w = jpeg->get_width() * model.getScale0();
         float newScale = view.getWidth() / w;
+        model.setScale(newScale);
 
         // Adjust scale via zoom operations
-        while (model.getScale() < newScale && model.zoomIn()) {}
-        while (model.getScale() > newScale && model.zoomOut()) {}
+        //while (model.getScale() < newScale && model.zoomIn()) {}
+        //while (model.getScale() > newScale && model.zoomOut()) {}
     }
+    model.setPositionX(0);
 }
 
 void ScreenController::fit2height()
@@ -194,12 +196,14 @@ void ScreenController::fit2height()
     if (jpeg) {
         float h = jpeg->get_height() * model.getScale0();
         float newScale = view.getHeight() / h;
+        model.setScale(newScale);
 
         // Adjust scale via zoom operations
-        while (model.getScale() < newScale && model.zoomIn()) {}
-        while (model.getScale() > newScale && model.zoomOut()) {}
+        // while (model.getScale() < newScale && model.zoomIn()) {}
+        // while (model.getScale() > newScale && model.zoomOut()) {}
 
         // Pan to top
+        model.setPositionX(0);
         model.setPositionY(model.getMaxTop());
     }
 }
