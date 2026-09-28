@@ -43,6 +43,9 @@ public:
     void setPositionY(float y);
     void setPositionX(float x);
     void reset();
+
+    void fit2width();
+    void fit2height();
     
     // Navigation
     void nextImage();

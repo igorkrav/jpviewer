@@ -175,37 +175,12 @@ void ScreenController::handleArrowKey(int key, int mods)
 
 void ScreenController::fit2width()
 {
-    // Fit to window width
-    const auto* jpeg = model.getCurrentImage();
-    if (jpeg) {
-        float w = jpeg->get_width() * model.getScale0();
-        float newScale = view.getWidth() / w;
-        model.setScale(newScale);
-
-        // Adjust scale via zoom operations
-        //while (model.getScale() < newScale && model.zoomIn()) {}
-        //while (model.getScale() > newScale && model.zoomOut()) {}
-    }
-    model.setPositionX(0);
+    model.fit2width();
 }
 
 void ScreenController::fit2height()
 {
-    // Fit to window height
-    const auto* jpeg = model.getCurrentImage();
-    if (jpeg) {
-        float h = jpeg->get_height() * model.getScale0();
-        float newScale = view.getHeight() / h;
-        model.setScale(newScale);
-
-        // Adjust scale via zoom operations
-        // while (model.getScale() < newScale && model.zoomIn()) {}
-        // while (model.getScale() > newScale && model.zoomOut()) {}
-
-        // Pan to top
-        model.setPositionX(0);
-        model.setPositionY(model.getMaxTop());
-    }
+    model.fit2height();
 }
 
 void ScreenController::handleScroll(double xoffset, double yoffset)

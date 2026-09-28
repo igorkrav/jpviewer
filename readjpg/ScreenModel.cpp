@@ -314,3 +314,31 @@ void ScreenModel::clampPosition()
     if (posx - scalex > 1.0f) posx = 1.0f + scalex;
     if (posx + scalex < -1.0f) posx = -1.0f - scalex;
 }
+
+void ScreenModel::fit2width()
+{
+    // Fit to window width
+    const auto* jpeg = getCurrentImage();
+    if (jpeg) {
+        float w = jpeg->get_width() * getScale0();
+        float newScale = windowWidth / w;
+        setScale(newScale);
+
+        setPositionX(0);
+    }
+}
+
+void ScreenModel::fit2height()
+{
+    // Fit to window height
+    const auto* jpeg = getCurrentImage();
+    if (jpeg) {
+        float h = jpeg->get_height() * getScale0();
+        float newScale = windowHeight / h;
+        setScale(newScale);
+
+        // Pan to top
+        setPositionX(0);
+        setPositionY(getMaxTop());
+    }
+}
