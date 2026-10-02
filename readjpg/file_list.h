@@ -48,18 +48,30 @@ public:
     const int get_current_index() const { return current_index; }
     const int get_total_files() const { return static_cast<int>(files.size()); }
 
-    bool next() {
+    bool next(bool force) {
         if (current_index < files.size() - 1)
         {
             current_index++;
             return true;
         }
+        else {
+            if (force && !files.empty()) {
+                current_index = 0; // wrap around to the first file
+                return true;
+            }
+        }
         return false;
     }
-    bool prev() {
+    bool prev(bool force) {
         if (current_index > 0) {
             current_index--;
             return true;
+        }
+        else {
+            if (force && !files.empty()) {
+                current_index = static_cast<int>(files.size() - 1); // wrap around to the last file
+                return true;
+            }
         }
         return false;
     }

@@ -116,14 +116,14 @@ void ScreenModel::reset()
     updateViewport(windowWidth, windowHeight, jpeg->get_width(), jpeg->get_height());
 }
 
-void ScreenModel::nextImage()
+void ScreenModel::nextImage(bool force)
 {
-    updateImage(1);
+    updateImage(1, force);
 }
 
-void ScreenModel::previousImage()
+void ScreenModel::previousImage(bool force)
 {
-    updateImage(-1);
+    updateImage(-1, force);
 }
 
 void ScreenModel::updateViewport(int windowWidth, int windowHeight, int imageWidth, int imageHeight)
@@ -209,20 +209,20 @@ void ScreenModel::loadJpegThread()
     }
 }
 
-void ScreenModel::updateImage(int step)
+void ScreenModel::updateImage(int step, bool force)
 {
     if (!files) return;
 
     int idx = files->get_current_index();
     int idx_next = idx + step;
-    if (idx_next < 0 || idx_next >= files->get_total_files()) return;
+    //if (idx_next < 0 || idx_next >= files->get_total_files()) return;
 
     // Update current index
     if (step > 0) {
-        files->next();
+        files->next(force);
     }
     else {
-        files->prev();
+        files->prev(force);
     }
 
     // Check if the current image is already in the cache

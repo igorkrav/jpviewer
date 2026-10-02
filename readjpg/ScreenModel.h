@@ -48,8 +48,8 @@ public:
     void fit2height();
     
     // Navigation
-    void nextImage();
-    void previousImage();
+    void nextImage(bool force);
+    void previousImage(bool force);
     
     // Viewport management
     void updateViewport(int windowWidth, int windowHeight, int imageWidth, int imageHeight);
@@ -93,6 +93,6 @@ private:
     // Internal methods
     void loadJpegThread();
     void scheduleJpeg(int idx);
-    void updateImage(int step);
+    void updateImage(int step, bool force);
     void clampPosition();
 };

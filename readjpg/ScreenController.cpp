@@ -39,12 +39,12 @@ void ScreenController::handleMouseButton(int button, int action, int mods)
     switch (button) {
     case GLFW_MOUSE_BUTTON_LEFT:
         if (action == GLFW_PRESS) {
-            model.previousImage();
+            model.previousImage(mods == GLFW_MOD_CONTROL);
         }
         break;
     case GLFW_MOUSE_BUTTON_RIGHT:
         if (action == GLFW_PRESS) {
-            model.nextImage();
+            model.nextImage(mods == GLFW_MOD_CONTROL);
         }
         break;
     }
@@ -87,13 +87,13 @@ void ScreenController::handleKey(int key, int scancode, int action, int mods)
 
     case GLFW_KEY_SPACE:
         if (action == GLFW_PRESS) {
-            model.nextImage();
+            model.nextImage(mods == GLFW_MOD_CONTROL);
         }
         break;
 
     case GLFW_KEY_BACKSPACE:
         if (action == GLFW_PRESS) {
-            model.previousImage();
+            model.previousImage(mods == GLFW_MOD_CONTROL);
         }
         break;
 
