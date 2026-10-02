@@ -121,54 +121,73 @@ void ScreenController::handleArrowKey(int key, int mods)
     case GLFW_KEY_LEFT:
         if (mods == GLFW_MOD_CONTROL) {
             model.pan(model.getMaxLeft(), 0.f);
+            return;
         }
-        else {
-            model.pan(0.01f, 0.f);
+        if (mods == GLFW_MOD_ALT) {
+            //model.pan(model.getMaxLeft(), 0.f);
+            view.moveWindow(-1, 0);
+            return;
         }
+
+        model.pan(0.01f, 0.f);
         break;
 
     case GLFW_KEY_RIGHT:
         if (mods == GLFW_MOD_CONTROL) {
             model.pan(model.getMaxRight(), 0.f);
+            return;
         }
-        else {
-            model.pan(-0.01f, 0.f);
+        if (mods == GLFW_MOD_ALT) {
+            view.moveWindow(1, 0);
+            return;
         }
+        model.pan(-0.01f, 0.f);
         break;
 
-    case GLFW_KEY_UP:
+    case GLFW_KEY_UP: {
         if (mods == GLFW_MOD_CONTROL) {
             model.setPositionY(model.getMaxTop());
+            return;
         }
-        else {
-            float step = 0.1f;
-            if (mods == GLFW_MOD_SHIFT) {
-                step = 0.01f;
-            }
-            if (model.getPositionY() - step < model.getMaxTop()) {
-                model.setPositionY(model.getMaxTop());
-            }
-            else
-                model.pan(0.f, -step);
+        if (mods == GLFW_MOD_ALT) {
+            view.moveWindow(0, -1);
+            return;
         }
+        float step = 0.1f;
+        if (mods == GLFW_MOD_SHIFT) {
+            step = 0.01f;
+        }
+
+        if (model.getPositionY() - step < model.getMaxTop()) {
+            model.setPositionY(model.getMaxTop());
+            return;
+        }
+
+        model.pan(0.f, -step);
+    }
         break;
 
-    case GLFW_KEY_DOWN:
+    case GLFW_KEY_DOWN: {
         if (mods == GLFW_MOD_CONTROL) {
             model.setPositionY(model.getMaxBottom());
+            return;
         }
-        else {
-            float step = 0.1f;
-            if (mods == GLFW_MOD_SHIFT) {
-                step = 0.01f;
-            }
+        if (mods == GLFW_MOD_ALT) {
+            view.moveWindow(0, 1);
+            return;
+        }
+        float step = 0.1f;
+        if (mods == GLFW_MOD_SHIFT) {
+            step = 0.01f;
+        }
 
-            if (model.getPositionY() + step > model.getMaxBottom()) {
-                model.setPositionY(model.getMaxBottom());
-            }
-            else
-                model.pan(0.f, step);
+        if (model.getPositionY() + step > model.getMaxBottom()) {
+            model.setPositionY(model.getMaxBottom());
+            return;
         }
+
+        model.pan(0.f, step);
+    }
         break;
     }
 }

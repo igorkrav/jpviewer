@@ -216,3 +216,10 @@ void ScreenView::cleanup()
     }
     glfwTerminate();
 }
+
+void ScreenView::moveWindow(int dx, int dy)
+{
+    int xpos, ypos;
+    glfwGetWindowPos(window, &xpos, &ypos);
+    glfwSetWindowPos(window, xpos + dx, ypos + dy);
+}

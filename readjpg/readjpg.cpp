@@ -94,4 +94,5 @@ void help(const char *name)
     std::cout << "Right      - show next image" << std::endl;
     std::cout << "Left       - show prev image" << std::endl;
     std::cout << "Scroll     - zoom" << std::endl;
+    std::cout << "Alt-Up, Alt-Down, Alt-Left, Alt-Right - move window" << std::endl;
 }

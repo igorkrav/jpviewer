@@ -35,6 +35,8 @@ public:
     void setWidth (int v) { width = v; }
     void setHeight(int v) { height = v; }
 
+    void moveWindow(int dx, int dy);
+
     // Title management
     void setWindowTitle(const std::wstring& title);
 
